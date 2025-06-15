@@ -2,83 +2,257 @@
 @import url("https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap");
 
 @layer normalize, base;
+:root {
+	--primary: oklch(1 0 0);
+	--foreground: oklch(1 0 0);
+	--accent: oklch(1 0.4 255);
+	--border: rgba(255, 255, 255, 0.4);
+}
 
 @layer base {
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
 	html,
 	body {
 		width: 100%;
-		max-width: 1280px;
+		max-width: 1536px;
 		height: 100%;
 		max-height: 100vh;
+		margin: 0 auto;
 		background-color: black;
+		color: var(--foreground);
 		display: grid;
-		justify-content: center;
-		align-content: center;
-		grid-template-columns: 900px;
-		grid-template-rows: 900px;
+		place-content: center;
+		place-items: center;
+		line-height: 1.7rem;
 	}
-	.container {
+
+	.layout {
+		display: grid;
+		grid-template-columns: 1000px;
 		width: 100%;
 		height: 100%;
-		background-image: url("./image/image.png");
-		background-position: center;
-		background-repeat: no-repeat;
-		background-size: contain;
-		position: relative;
+		place-content: center;
+		place-items: center;
+		gap: 16px;
+	}
 
-		.item {
-			padding: 1rem;
-			text-align: center;
+	.desc-container {
+		width: 100%;
+		height: 100%;
+		display: grid;
+		gap: 12px;
+
+		& > ul {
+			padding-left: 24px;
+			list-style-type: square;
+		}
+	}
+
+	.content-container {
+		width: 100%;
+		height: 1000px;
+		max-height: 1000px;
+		border: 2px solid var(--border);
+
+		background-position: center, center;
+		background-repeat: no-repeat no-repeat;
+		background-size: contain, contain;
+		background-image: url("./image/image.png"), url("./image/image2.png");
+		animation: switchImages 36s infinite;
+
+		position: relative;
+		display: grid;
+		place-content: center;
+		place-items: center;
+
+		&::before {
 			position: absolute;
 			content: "";
-			align-content: center;
-			width: 380px;
-			height: 150px;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			border-radius: 999px;
-			overflow: hidden;
-			animation-name: sway;
-			animation-iteration-count: infinite;
-			animation-duration: 12s;
-			animation-timing-function: ease;
+			width: 100%;
+			height: 100%;
+			background-color: oklch(1 0 0 / 0.3);
+			filter: invert(1);
+			z-index: 0;
+		}
 
-			.liquidGlass-tint {
-				position: absolute;
-				inset: 0;
-				content: "";
-				z-index: 1;
-				background: oklch(1 0 0 / 0.2);
-			}
+		.timeline-container {
+			position: relative;
+			width: 100%;
+			max-width: 680px;
+			height: auto;
+			padding: 12px;
+			display: grid;
+			grid-template-columns: 1fr;
 
-			.liquidGlass-shine {
-				position: absolute;
-				inset: 0;
-				content: "";
-				z-index: 2;
+			.timeline-item {
+				position: relative;
+				margin-bottom: 12px;
+				padding-top: 5px;
+				width: 100%;
+				height: auto;
+				padding-bottom: 24px;
 
-				overflow: hidden;
+				&::before {
+					content: "";
+					position: absolute;
+					left: -23px;
+					top: 1px;
+					width: 2px;
+					height: calc(100% + 2px);
+					background-color: var(--border);
+				}
 
-				border-radius: 999px;
+				&.is-last {
+					margin-bottom: 0;
 
-				box-shadow: inset 2px 2px 1px 0 rgba(255, 255, 255, 0.5),
-					inset -1px -1px 1px 1px rgba(255, 255, 255, 0.5);
-			}
+					&::before {
+						height: 10px;
+					}
+				}
 
-			.liquidGlass-effect {
-				position: absolute;
-				inset: 0;
-				content: "";
-				z-index: -1;
-				backdrop-filter: blur(2px);
-				backdrop-filter: url(#lg-dist);
-				isolation: isolate;
+				&:hover {
+					.timeline-marker {
+						width: 36px;
+						height: 36px;
+						left: -40.2px;
+						top: -12px;
+					}
+
+					.timeline-content {
+						max-height: 500px;
+						width: 100%;
+						transition: all 1.2s ease;
+
+						.timeline-year {
+							font-size: 1rem;
+						}
+
+						.experience-title {
+							font-size: 1.6rem;
+						}
+					}
+				}
+
+				.timeline-inner {
+					width: fit-content;
+					position: relative;
+					z-index: 0;
+					padding: 10px 12px;
+					border-radius: 24px;
+
+					/* liquidGlass-filter HERE */
+
+					.liquidGlass-tint {
+						position: absolute;
+						inset: 0;
+						content: "";
+						z-index: 1;
+						border-radius: 24px;
+						background: oklch(1 0 0 / 0.4);
+						filter: invert(1);
+					}
+
+					.liquidGlass-shine {
+						position: absolute;
+						inset: 0;
+						content: "";
+						z-index: 2;
+
+						overflow: hidden;
+						border-radius: 24px;
+
+						filter: hue-rotate(20deg);
+
+						box-shadow: inset 2px 2px 1px 0 rgba(255, 255, 255, 0.5),
+							inset -1px -1px 1px 1px rgba(255, 255, 255, 0.5);
+					}
+
+					.liquidGlass-effect {
+						position: absolute;
+						inset: 0;
+						content: "";
+						z-index: -1;
+						backdrop-filter: url(#lg-dist);
+						isolation: isolate;
+					}
+				}
+
+				.timeline-marker {
+					position: absolute;
+					left: -32px;
+					top: -12px;
+					border-radius: 50%;
+					background-color: var(--accent);
+					border: 2px solid var(--border);
+					transition: all 0.3s ease;
+					width: 20px;
+					height: 20px;
+				}
+
+				.timeline-content {
+					cursor: pointer;
+					position: relative;
+					z-index: 4;
+					padding: 6px 8px;
+					display: grid;
+					grid-template-columns: 1fr;
+					gap: 0.5rem;
+					max-height: 88px;
+					transition: all 0.4s ease;
+					overflow: hidden;
+
+					&.initially-open {
+						max-height: 500px;
+						width: 100%;
+					}
+
+					.timeline-year {
+						display: block;
+						font-weight: bold;
+						font-size: 0.875rem;
+						user-select: none;
+						transition: font-size 0.3s ease;
+						border-bottom: 1px solid var(--border);
+						padding-bottom: 0.5rem;
+					}
+
+					.experience-wrapper {
+						display: grid;
+						gap: 15px;
+						position: relative;
+						width: fit-content;
+						background: transparent;
+						padding-bottom: 0.75rem;
+						padding-left: 0.1rem;
+						padding-right: 0.75rem;
+						padding-top: 0.25rem;
+					}
+
+					.experience-title {
+						font-size: 0.875rem;
+						position: relative;
+						white-space: nowrap;
+						user-select: none;
+						transition: font-size 0.4s ease;
+					}
+
+					.experience-description {
+						font-size: 0.875rem;
+						padding-left: 0.3rem;
+						word-break: break-all;
+						word-wrap: break-word;
+						user-select: none;
+						width: 100%;
+					}
+				}
 			}
 		}
 	}
 }
-
 @keyframes sway {
 	0% {
 		transform: translate(-50%, -50%);
@@ -91,5 +265,33 @@
 	}
 	75% {
 		transform: translate(-50%, -50%);
+	}
+}
+
+@keyframes content-glow {
+	0% {
+		max-height: 24px;
+	}
+
+	100% {
+		max-height: 500px;
+	}
+}
+
+@keyframes switchImages {
+	0% {
+		background-image: url("./image/image.png");
+	}
+	50% {
+		background-image: url("./image/image.png");
+	}
+	60% {
+		background-image: url("./image/image2.png");
+	}
+	90% {
+		background-image: url("./image/image2.png");
+	}
+	100% {
+		background-image: url("./image/image.png");
 	}
 }
