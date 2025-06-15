@@ -61,7 +61,7 @@
 		background-position: center, center;
 		background-repeat: no-repeat no-repeat;
 		background-size: contain, contain;
-		background-image: url("./image/image.png"), url("./image/image2.png");
+		background-image: url("./image/image.webp"), url("./image/image2.webp");
 		animation: switchImages 36s infinite;
 
 		position: relative;

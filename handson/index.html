@@ -5,14 +5,13 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Document</title>
 		<link rel="stylesheet" href="./style.css" />
-		<script type="module" src="./index.js"></script>
 	</head>
 	<body>
 		<!-- SVG Filter HERE -->
 		<svg style="display: none">
 			<defs>
 				<filter id="lg-dist" x="0%" y="0%" width="100%" height="100%">
-					<!-- feTurblence:ガラスひずみのもととなる、ランダムでなめらかな波模様（ノイズ）を生成 -->
+					<!-- フラクタルノイズを生成 - ランダムな模様の基となる -->
 					<feTurbulence
 						type="fractalNoise"
 						baseFrequency="0.004 0.004"
@@ -21,9 +20,10 @@
 						result="noise"
 					/>
 
+					<!-- ノイズをぼかしてなめらかにする -->
 					<feGaussianBlur in="noise" stdDeviation="8" result="blurred" />
 
-					<!-- feComposite: 画像を合成する処理です。（この設定では、前のステップで作成した光沢をさらに重ねて強調するような効果になっています） -->
+					<!-- 色の合成処理（明度や色調を調整） -->
 					<feComposite
 						operator="arithmetic"
 						k1="0"
@@ -33,6 +33,7 @@
 						result="litImage"
 					/>
 
+					<!-- 最終的な歪み効果を適用 -->
 					<feDisplacementMap
 						in="SourceGraphic"
 						in2="litImage"
@@ -67,9 +68,15 @@
 							<div class="timeline-content initially-open">
 								<span class="timeline-year">20XX年～</span>
 								<div class="experience-wrapper">
-									<h4 class="experience-title">陰陽師</h4>
+									<h4 class="experience-title">Content1 Title</h4>
 									<p class="experience-description initially-open">
-										Webサイトのマークアップ/デザイン/運用に携わる。WordPressサイトのパフォーマンス改善、Next.jsやAstroを用いたJamstack構成のサイト開発を中心に活動。
+										"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+										eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+										minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+										aliquip ex ea commodo consequat. Duis aute irure dolor in
+										reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+										pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+										culpa qui officia deserunt mollit anim id est laborum."
 									</p>
 								</div>
 							</div>
@@ -86,9 +93,15 @@
 							<div class="timeline-content">
 								<span class="timeline-year">21XX年X月～21XX年X月</span>
 								<div class="experience-wrapper">
-									<h4 class="experience-title">忍者</h4>
+									<h4 class="experience-title">Content2 Title</h4>
 									<p class="experience-description">
-										金融業界のレガシーなUI/UX開発基盤のWeb化プロジェクトに参画。フロントエンドの技術選定やCSS設計を主導。
+										"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+										eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+										minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+										aliquip ex ea commodo consequat. Duis aute irure dolor in
+										reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+										pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+										culpa qui officia deserunt mollit anim id est laborum."
 									</p>
 								</div>
 							</div>
@@ -105,9 +118,15 @@
 							<div class="timeline-content">
 								<span class="timeline-year">～現在</span>
 								<div class="experience-wrapper">
-									<h4 class="experience-title">マナー講師</h4>
+									<h4 class="experience-title">Content3 Title</h4>
 									<p class="experience-description">
-										個人開発＋受託開発の２軸で活動中。最近はClaudeCodeやCursorを使ったAI駆動開発にハマっています。
+										"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+										eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+										minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+										aliquip ex ea commodo consequat. Duis aute irure dolor in
+										reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+										pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+										culpa qui officia deserunt mollit anim id est laborum."
 									</p>
 								</div>
 							</div>
