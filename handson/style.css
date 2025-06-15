@@ -5,7 +5,7 @@
 :root {
 	--primary: oklch(1 0 0);
 	--foreground: oklch(1 0 0);
-	--accent: oklch(1 0.4 255);
+	--accent: oklch(0.5 0.2 125);
 	--border: rgba(255, 255, 255, 0.4);
 }
 
